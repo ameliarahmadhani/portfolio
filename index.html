@@ -9,6 +9,22 @@
     
     <!-- DESAIN CSS --> 
     <style> 
+    @media (max-width: 768px) {
+    /* Mencegah logo membesar melebihi wadah di HP */
+    .experience-logo {
+        width: 50px !important; /* Pas untuk tampilan layar kecil */
+        height: auto !important;
+        max-width: 100% !important;
+        object-fit: contain;
+    }
+
+    /* Memastikan layout item tidak terpotong */
+    .experience-item {
+        flex-direction: row; /* Atau 'column' jika ingin logo di atas teks */
+        align-items: flex-start;
+        gap: 12px;
+    }
+}
         :root { 
             --bg-dark: #120815; 
             --card-bg: #1d0f24; 
@@ -331,6 +347,325 @@
             color: var(--text-gray);
         }
 
+
+        /* EXPERIENCE SECTION */
+        .experience-section {
+            position: relative;
+        }
+
+        /* Desktop: logo besar di luar garis sebelah kiri */
+        /* EXPERIENCE SECTION - LOGO BESAR DI LUAR GARIS SEBELAH KIRI */
+        .experience-timeline {
+            position: relative;
+            width: min(1120px, 100%);
+            margin: 0 auto;
+            padding: 10px 25px 10px 240px;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 120px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(
+                180deg,
+                rgba(255, 105, 180, 0.15),
+                #ff1493 15%,
+                #ff69b4 85%,
+                rgba(255, 105, 180, 0.15)
+            );
+            box-shadow: 0 0 12px rgba(255, 20, 147, 0.35);
+        }
+
+        .experience-item {
+            position: relative;
+            margin-bottom: 55px;
+            min-height: 110px;
+        }
+
+        .experience-item:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Titik tetap tepat di atas garis timeline */
+        .experience-dot {
+            position: absolute;
+            left: -128px;
+            top: 14px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #ff69b4;
+            border: 3px solid #1d0f24;
+            box-shadow:
+                0 0 0 2px rgba(255, 105, 180, 0.45),
+                0 0 16px rgba(255, 20, 147, 0.8);
+            z-index: 3;
+        }
+
+        /* LOGO BESAR DI LUAR GARIS, SEBELAH KIRI */
+        .experience-logo {
+            position: absolute;
+            left: -250px;
+            top: 0;
+            width: 110px;
+            height: 110px;
+            padding: 8px;
+            border-radius: 16px;
+            object-fit: contain;
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(255, 183, 213, 0.65);
+            box-shadow: 0 0 20px rgba(255, 20, 147, 0.18);
+            z-index: 2;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .experience-logo.logo-dark {
+            background: #130a17;
+        }
+
+        .experience-logo-icon {
+            position: absolute;
+            left: -250px;
+            top: 0;
+            width: 110px;
+            height: 110px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffb7d5;
+            font-size: 42px;
+            background: rgba(29, 15, 36, 0.92);
+            border: 1px solid rgba(255, 183, 213, 0.65);
+            box-shadow: 0 0 20px rgba(255, 20, 147, 0.18);
+            z-index: 2;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Teks dibuat lebih ke tengah agar tidak bertabrakan dengan logo */
+        .experience-content {
+            padding: 0;
+            text-align: left;
+        }
+
+        .experience-item:hover .experience-dot {
+            transform: scale(1.2);
+            box-shadow:
+                0 0 0 3px rgba(255, 105, 180, 0.28),
+                0 0 22px rgba(255, 20, 147, 0.95);
+        }
+
+        .experience-item:hover .experience-role {
+            color: #ffb7d5;
+            text-shadow: 0 0 12px rgba(255, 105, 180, 0.35);
+        }
+
+        .experience-item:hover .experience-logo,
+        .experience-item:hover .experience-logo-icon {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 0 26px rgba(255, 20, 147, 0.32);
+        }
+
+        @media (max-width: 900px) {
+            .experience-timeline {
+                padding-left: 180px;
+                padding-right: 15px;
+            }
+
+            .experience-timeline::before {
+                left: 95px;
+            }
+
+            .experience-dot {
+                left: -93px;
+            }
+
+            .experience-logo,
+            .experience-logo-icon {
+                left: -190px;
+                width: 82px;
+                height: 82px;
+                border-radius: 14px;
+            }
+
+            .experience-logo-icon {
+                font-size: 32px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .experience-timeline {
+                padding: 10px 12px 10px 112px;
+            }
+
+            .experience-timeline::before {
+                left: 88px;
+            }
+
+            .experience-dot {
+                left: -31px;
+                top: 8px;
+                width: 12px;
+                height: 12px;
+            }
+
+            .experience-logo,
+            .experience-logo-icon {
+                left: -112px;
+                top: 0;
+                width: 68px;
+                height: 68px;
+                padding: 4px;
+                border-radius: 12px;
+            }
+
+            .experience-logo-icon {
+                font-size: 26px;
+            }
+        }
+
+        .experience-role {
+            color: #ffffff;
+            font-size: 21px;
+            font-weight: 700;
+            line-height: 1.35;
+            margin: 0 0 7px;
+        }
+
+        .experience-meta {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+            color: #ffb7d5;
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .experience-meta .separator {
+            color: rgba(255, 183, 213, 0.55);
+        }
+
+        .experience-date {
+            color: var(--text-gray);
+        }
+
+        .experience-bullets {
+            margin: 0;
+            padding-left: 20px;
+            color: var(--text-gray);
+        }
+
+        .experience-bullets li {
+            margin-bottom: 9px;
+            padding-left: 4px;
+            font-size: 14.5px;
+            line-height: 1.65;
+        }
+
+        .experience-bullets li::marker {
+            color: #ff69b4;
+        }
+
+        .experience-item:hover .experience-dot {
+            transform: scale(1.2);
+            box-shadow:
+                0 0 0 3px rgba(255, 105, 180, 0.28),
+                0 0 22px rgba(255, 20, 147, 0.95);
+        }
+
+        .experience-item:hover .experience-role {
+            color: #ffb7d5;
+            text-shadow: 0 0 12px rgba(255, 105, 180, 0.35);
+        }
+
+        .experience-item:hover .experience-logo,
+        .experience-item:hover .experience-logo-icon {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 0 28px rgba(255, 20, 147, 0.32);
+        }
+
+        @media (max-width: 1100px) {
+            .experience-timeline {
+                padding-left: 240px;
+            }
+
+            .experience-timeline::before {
+                left: 195px;
+            }
+
+            .experience-dot {
+                left: -52px;
+            }
+
+            .experience-logo,
+            .experience-logo-icon {
+                left: -225px;
+                width: 130px;
+                height: 130px;
+                border-radius: 18px;
+            }
+
+            .experience-logo-icon {
+                font-size: 45px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .experience-timeline {
+                padding: 10px 15px 10px 95px;
+            }
+
+            .experience-timeline::before {
+                left: 28px;
+            }
+
+            .experience-dot {
+                left: -73px;
+                top: 12px;
+                width: 12px;
+                height: 12px;
+            }
+
+            .experience-logo,
+            .experience-logo-icon {
+                left: -82px;
+                width: 58px;
+                height: 58px;
+                padding: 5px;
+                border-radius: 12px;
+            }
+
+            .experience-logo-icon {
+                padding: 0;
+                font-size: 24px;
+            }
+
+            .experience-item {
+                min-height: 70px;
+            }
+
+            .experience-role {
+                font-size: 18px;
+            }
+
+            .experience-meta {
+                font-size: 14px;
+            }
+
+            .experience-bullets {
+                padding-left: 18px;
+            }
+
+            .experience-bullets li {
+                font-size: 14px;
+            }
+        }
+
         /* Portfolio Section Styling */
         .portfolio-grid {
             display: grid;
@@ -597,6 +932,7 @@
             <ul> 
                 <li><a href="#home" class="active">Home</a></li> 
                 <li><a href="#about-page" id="about-link">About</a></li> 
+                <li><a href="#experience">Experience</a></li>
                 <li><a href="#portfolio">Portfolio</a></li> 
                 <li><a href="#contact">Contact</a></li> 
             </ul> 
@@ -683,6 +1019,151 @@
                         Bachelor of Electrical Engineering student with strong time management skills, able to work effectively in a team, and known for being responsible, reliable, and committed to maintaining a good work ethic. Skilled in several fields, including design, while continuously developing knowledge in electrical engineering and programming. I have a strong interest in technology applications and programming. I am committed to developing my technical, analytical, and creative skills through continuous learning and hands-on experience. My commitment to creating innovative, creative, and efficient solutions motivates me to continuously improve my knowledge and skills.
                     </p>
                 </div>
+            </div>
+        </section>
+
+
+        <!-- EXPERIENCE SECTION -->
+        <section id="experience" class="section experience-section">
+            <h2 class="section-title reveal">Experience</h2>
+
+            <div class="experience-timeline">
+
+                <!-- Experience 1 -->
+                <div class="experience-item reveal delay-2">
+                    <div class="experience-dot"></div>
+                    <div class="experience-logo-icon">
+                        <i class="fa-solid fa-coins"></i>
+                    </div>
+                    <div class="experience-content">
+                        <h3 class="experience-role">Treasurer Division Member</h3>
+                        <div class="experience-meta">
+                            <span>Scout Organization (Pramuka) – SMAN 1 Krangkeng Indramayu</span>
+                            <span class="separator">•</span>
+                            <span class="experience-date">2022 – 2023</span>
+                        </div>
+                        <ul class="experience-bullets">
+                            <li>Managed and accurately recorded the organization’s cash income and expenditures.</li>
+                            <li>Maintained financial records and monitored cash balances for organizational activities.</li>
+                            <li>Prepared financial reports and expense documentation for events and work programs.</li>
+                            <li>Assisted in budget planning and financial administration for Scouting activities.</li>
+                            <li>Ensured transparency and accuracy in financial transactions and records.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Experience 2 -->
+                <div class="experience-item reveal delay-2">
+                    <span class="experience-dot"></span>
+                    <div class="experience-logo-icon" aria-label="Electrical Engineering Gathering logo">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <div class="experience-content">
+                        <h3 class="experience-role">Staff Division PDD (Publication, Documentation, and Design)</h3>
+                        <div class="experience-meta">
+                            <span>Electrical Engineering Gathering</span>
+                            <span class="separator">•</span>
+                            <span class="experience-date">October 2025</span>
+                        </div>
+                        <ul class="experience-bullets">
+                            <li>Designed promotional materials and social media content.</li>
+                            <li>Created visual concepts and event branding.</li>
+                            <li>Produced live reports and event documentation.</li>
+                            <li>Managed Instagram content and audience engagement.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Experience 3 -->
+                <div class="experience-item reveal delay-2">
+                    <span class="experience-dot"></span>
+                    <img src="logo telkom.png" class="experience-logo" alt="Logo Telkom University" style="mix-blend-mode: multiply; background: transparent;">
+                    <div class="experience-content">
+                        <h3 class="experience-role">Staff Division PDD (Publication, Documentation, and Design)</h3>
+                        <div class="experience-meta">
+                            <span>PKKMB Telkom University</span>
+                            <span class="separator">•</span>
+                            <span class="experience-date">September 2025</span>
+                        </div>
+                        <ul class="experience-bullets">
+                            <li>Edited promotional and event-related video content for TikTok and other social media platforms.</li>
+                            <li>Wrote engaging captions and copy for Instagram posts to effectively communicate event information and increase audience interaction.</li>
+                            <li>Developed creative content ideas and visual concepts to support event branding and audience engagement.</li>
+                            <li>Captured event documentation through photo and video coverage during PKKMB activities.</li>
+                            <li>Produced live reports and real-time content updates to provide timely information throughout the event.</li>
+                            <li>Assisted in managing social media publications and ensuring content was delivered according to the event schedule.</li>
+                            <li>Maintained documentation archives and supported post-event content preparation and publication.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Experience 4 -->
+                <div class="experience-item reveal delay-2">
+                    <span class="experience-dot"></span>
+                    <img src="logo kmte.png" class="experience-logo" alt="Logo KMTE"style="mix-blend-mode: multiply; background: transparent;">
+                    <div class="experience-content">
+                        <h3 class="experience-role">Staff Department Communication and Information (KOMINFO)</h3>
+                        <div class="experience-meta">
+                            <span>Keluarga Mahasiswa Teknik Elektro (KMTE)</span>
+                            <span class="separator">•</span>
+                            <span class="experience-date">February 2026 – Present</span>
+                        </div>
+                        <ul class="experience-bullets">
+                            <li>Edited promotional and event-related video content for TikTok and other social media platforms.</li>
+                            <li>Wrote engaging captions and copy for Instagram posts to effectively communicate event information and increase audience interaction.</li>
+                            <li>Developed creative content ideas and visual concepts to support event branding and audience engagement.</li>
+                            <li>Captured event documentation through photo and video coverage during PKKMB activities.</li>
+                            <li>Produced live reports and real-time content updates to provide timely information throughout the event.</li>
+                            <li>Assisted in managing social media publications and ensuring content was delivered according to the event schedule.</li>
+                            <li>Maintained documentation archives and supported post-event content preparation and publication.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Experience 5 -->
+                <div class="experience-item reveal delay-2">
+                    <div class="experience-dot"></div>
+                    <img src="Logo EIRRG.png" alt="Logo EIRRG" class="experience-logo" style="mix-blend-mode: screen; filter: brightness(1.2) contrast(1.2); background: transparent;">
+                    <div class="experience-content">
+                        <h3 class="experience-role">Staff Division PDD (Publication, Documentation, and Design)</h3>
+                        <div class="experience-meta">
+                            <span>EIRRG (Electronics and Intelligent Robotic Research Group)</span>
+                            <span class="separator">•</span>
+                            <span class="experience-date">May 2026 – Present</span>
+                        </div>
+                        <ul class="experience-bullets">
+                            <li>Designed posters, promotional materials, and visual content for laboratory activities and events.</li>
+                            <li>Edited video content for social media publications and organizational campaigns.</li>
+                            <li>Created and managed Instagram posts to support laboratory branding and information dissemination.</li>
+                            <li>Collaborated with team members to develop creative concepts and maintain consistent visual communication.</li>
+                            <li>Assisted in documenting laboratory activities and preparing digital content for public outreach.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Experience 6 -->
+                <div class="experience-item reveal delay-2">
+                    <div class="experience-dot"></div>
+                    <img src="Logo EIRRG.png" alt="Logo EIRRG" class="experience-logo" style="mix-blend-mode: screen; filter: brightness(1.2) contrast(1.2); background: transparent;">
+                    <div class="experience-content">
+                        <h3 class="experience-role">Assistant of EIRRG OFFICIAL DIVISION</h3>
+                        <div class="experience-meta">
+                            <span>Electronics and Intelligence Robotic Research Group (EIRRG)</span>
+                            <span class="separator">•</span>
+                            <span class="experience-date">April 2026 – Present</span>
+                        </div>
+                        <ul class="experience-bullets">
+                            <li>Managed research and development projects related to electrical and embedded systems.</li>
+                            <li>Organized project timelines, resources, and team responsibilities.</li>
+                            <li>Facilitated communication between project members and supervisors.</li>
+                            <li>Oversaw project implementation, testing, and evaluation processes.</li>
+                            <li>Ensured project objectives were achieved within the planned schedule.</li>
+                            <li>Prepared laboratory materials, documentation, and technical reports.</li>
+                            <li>Supported the operation and maintenance of laboratory equipment.</li>
+                        </ul>
+                    </div>
+                </div>
+
             </div>
         </section>
 
