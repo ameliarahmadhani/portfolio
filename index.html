@@ -609,6 +609,42 @@
             }
         }
 
+        /* HP kecil: logo experience dikecilin lagi biar rapi */
+        @media (max-width: 400px) {
+            .experience-timeline {
+                padding: 10px 8px 10px 56px;
+            }
+
+            .experience-timeline::before {
+                left: 42px;
+            }
+
+            .experience-dot {
+                left: -17px;
+                top: 7px;
+                width: 9px;
+                height: 9px;
+            }
+
+            .experience-logo,
+            .experience-logo-icon {
+                left: -54px;
+                width: 34px;
+                height: 34px;
+                padding: 3px;
+                border-radius: 8px;
+            }
+
+            .experience-logo-icon {
+                padding: 0;
+                font-size: 15px;
+            }
+
+            .experience-item {
+                min-height: 50px;
+            }
+        }
+
         /* Portfolio Section Styling */
         .portfolio-grid {
             display: grid;
@@ -827,6 +863,18 @@
                 text-align: center;
             }
         } 
+
+        @media (max-width: 480px) {
+            .hero-url {
+                font-size: 10.5px;
+                padding: 9px 14px;
+                gap: 6px;
+                letter-spacing: 0;
+                white-space: nowrap;
+                word-break: normal;
+                max-width: 100%;
+            }
+        }
 
         /* ABOUT PAGE VIEW */
         .about-page-overlay { position: fixed; inset: 0; z-index: 2000; background: linear-gradient(135deg, #120815 0%, #200926 55%, #0d0611 100%); overflow-y: auto; opacity: 0; visibility: hidden; transform: translateY(20px); transition: opacity .35s ease, transform .35s ease, visibility .35s ease; }
