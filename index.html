@@ -1336,7 +1336,7 @@
             document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
             async function loadComments() { 
-                if (!commentsEndpoint || commentsEndpoint === "https://script.google.com/macros/s/AKfycbwBInWSOdBazi2-GLUMGCq8zctTocjNfA-OjKypNo0J85qxi87jqEvhETp1ViRQIJoSPw/exec") {
+                if (!commentsEndpoint) {
                     commentCount.innerText = 0;
                     return;
                 }
@@ -1367,7 +1367,7 @@
             commentForm.addEventListener("submit", async (e) => {
                 e.preventDefault();
 
-                if (!commentsEndpoint || commentsEndpoint === "https://script.google.com/macros/s/AKfycbwBInWSOdBazi2-GLUMGCq8zctTocjNfA-OjKypNo0J85qxi87jqEvhETp1ViRQIJoSPw/exec") {
+                if (!commentsEndpoint) {
                     alert("The comment form is not connected to Google Sheets yet. Please enter the Google Apps Script Web App URL first.");
                     return;
                 }
