@@ -1975,48 +1975,131 @@ button:hover, a:hover, .skill-pill:hover, .social-item:hover {
   border-color:#36bce9; text-shadow:0 0 12px rgba(54,188,233,.22);
 }
 
-        /* SLOW MOVING LIGHT: soft blue-white glow sweeping across the page */
+        /* SLOW MOVING LIGHT: bola cahaya bulat, lembut, tidak terlalu terang */
         body::after {
             content: "";
             position: fixed;
-            inset: -45%;
-            z-index: 0;
+            top: 50%;
+            left: 50%;
+            width: 70vmax;
+            height: 70vmax;
+            margin: -35vmax 0 0 -35vmax;
+            border-radius: 50%;
+            z-index: -1;
             pointer-events: none;
-            opacity: 0.22;
-            background:
-                linear-gradient(
-                    112deg,
-                    transparent 38%,
-                    rgba(190, 238, 255, 0.015) 43%,
-                    rgba(190, 238, 255, 0.16) 49%,
-                    rgba(54, 188, 233, 0.08) 52%,
-                    transparent 59%
-                );
-            filter: blur(34px);
-            transform: translate3d(-24%, -8%, 0) rotate(-8deg);
-            animation: slowLightSweep 28s ease-in-out infinite alternate;
+            background: radial-gradient(circle, rgba(120,210,255,0.14) 0%, rgba(54,188,233,0.05) 40%, rgba(54,188,233,0) 70%);
+            transform: translate3d(-30%, -25%, 0);
+            animation: slowLightSweep 26s ease-in-out infinite alternate;
             will-change: transform;
+        }
+        body.light-theme::after {
+            background: radial-gradient(circle, rgba(54,188,233,0.12) 0%, rgba(54,188,233,0.04) 40%, rgba(54,188,233,0) 70%);
         }
 
         @keyframes slowLightSweep {
-            0% {
-                transform: translate3d(-24%, -8%, 0) rotate(-8deg);
-            }
-            50% {
-                transform: translate3d(8%, 5%, 0) rotate(-5deg);
-            }
-            100% {
-                transform: translate3d(24%, 12%, 0) rotate(-2deg);
-            }
+            0% { transform: translate3d(-30%, -25%, 0); }
+            50% { transform: translate3d(25%, 10%, 0); }
+            100% { transform: translate3d(-10%, 30%, 0); }
         }
 
         @media (prefers-reduced-motion: reduce) {
-            body::after {
-                animation: none;
-                transform: none;
-            }
+            body::after { animation: none; transform: none; }
         }
 
+/* =========================================================
+   MOBILE FIX — overlay pages (My Work, Certificates)
+   ========================================================= */
+.about-page-overlay { -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
+.about-page-inner { box-sizing: border-box; }
+.about-page-title { overflow-wrap: anywhere; line-height: 1.15; min-width: 0; }
+.about-close { flex-shrink: 0; }
+.work-category-card h2, .work-gallery-title { overflow-wrap: anywhere; }
+
+@media (max-width: 768px) {
+  .about-page-inner,
+  #projects-page .about-page-inner {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 28px 18px 40px !important;
+    padding-top: max(28px, env(safe-area-inset-top)) !important;
+    border-radius: 0 !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+    min-height: 100dvh;
+    box-sizing: border-box;
+  }
+  .about-page-top { gap: 12px; margin-bottom: 26px; align-items: center; }
+  .about-page-title { font-size: clamp(26px, 8vw, 36px) !important; letter-spacing: .5px !important; }
+  .about-close { width: 42px; height: 42px; font-size: 18px; }
+  .work-categories { grid-template-columns: 1fr !important; gap: 18px; }
+  .work-category-card { min-height: 0 !important; padding: 28px 18px !important; }
+  .work-category-icon { width: 60px; height: 60px; font-size: 24px; margin-bottom: 16px; }
+  .work-category-card h2 { font-size: 20px !important; letter-spacing: .5px; }
+  .work-category-card p { font-size: 13px; line-height: 1.5; }
+  .work-gallery-header { flex-direction: row !important; align-items: center !important; gap: 12px; margin-bottom: 18px; }
+  .work-gallery-title { font-size: 20px !important; }
+  .work-back-btn { padding: 9px 13px; font-size: 13px; white-space: nowrap; flex-shrink: 0; }
+  .work-image-grid { grid-template-columns: 1fr !important; gap: 18px; }
+  .work-image-card img { height: auto !important; max-height: 70vh; object-fit: contain !important; }
+  .about-section-block { margin-bottom: 32px; }
+
+  /* backdrop-filter bertumpuk bikin render berantakan di Safari iOS */
+  #projects-page .about-page-inner,
+  #projects-page .work-category-card,
+  #projects-page .work-image-card {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+  #projects-page .about-page-inner { background: rgba(8,24,40,.92) !important; }
+  body.light-theme #projects-page .about-page-inner { background: rgba(255,255,255,.94) !important; }
+}
+
+@media (max-width: 400px) {
+  .about-page-inner,
+  #projects-page .about-page-inner { padding: 24px 14px 32px !important; }
+  .about-page-title { font-size: 24px !important; }
+}
+    
+/* DESKTOP: kotak overlay full selebar layar */
+@media (min-width: 769px) {
+  .about-page-inner,
+  #projects-page .about-page-inner {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 70px 6% 60px !important;
+    min-height: 100vh;
+    box-sizing: border-box;
+    border-radius: 0 !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+  }
+  .about-page-title { white-space: nowrap; }
+}
+    
+/* Overlay muncul pelan (fade + naik sedikit) */
+.about-page-overlay {
+  transition: opacity .9s ease, transform .9s cubic-bezier(.22,1,.36,1), visibility .9s ease !important;
+  transform: translateY(30px);
+}
+.about-page-overlay.active { transform: translateY(0); }
+.about-page-overlay.active .about-page-top,
+.about-page-overlay.active .work-categories,
+.about-page-overlay.active .work-gallery.active,
+.about-page-overlay.active .certificate-grid {
+  animation: overlayContentIn 1s cubic-bezier(.22,1,.36,1) both;
+}
+.about-page-overlay.active .work-categories,
+.about-page-overlay.active .certificate-grid { animation-delay: .25s; }
+.about-page-overlay.active .work-category-card:nth-child(2) { animation: overlayContentIn 1s cubic-bezier(.22,1,.36,1) .45s both; }
+@keyframes overlayContentIn {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .about-page-overlay, .about-page-overlay.active * { animation: none !important; transition-duration: .01ms !important; }
+}
     </style> 
 </head> 
 <body> 
