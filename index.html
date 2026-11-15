@@ -989,7 +989,22 @@
 
         /* Graphic Design: tampilkan poster dengan rasio/aspect asli, tanpa crop */
         #graphic-design-gallery .work-image-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
             align-items: start;
+        }
+
+        #graphic-design-gallery .work-image-card {
+            padding: 8px;
+            border-radius: 14px;
+        }
+
+        #graphic-design-gallery .work-image-card img {
+            border-radius: 8px;
+        }
+
+        @media (max-width: 900px) {
+            #graphic-design-gallery .work-image-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 12px; }
         }
 
         #graphic-design-gallery .work-image-card img {
@@ -2055,6 +2070,12 @@ button:hover, a:hover, .skill-pill:hover, .social-item:hover {
   body.light-theme #projects-page .about-page-inner { background: rgba(255,255,255,.94) !important; }
 }
 
+@media (max-width: 768px) {
+  #graphic-design-gallery .work-image-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 10px !important; }
+  #graphic-design-gallery .work-image-card { padding: 5px; }
+  #graphic-design-gallery .work-image-card img { max-height: none !important; height: auto !important; }
+}
+
 @media (max-width: 400px) {
   .about-page-inner,
   #projects-page .about-page-inner { padding: 24px 14px 32px !important; }
@@ -2101,6 +2122,47 @@ button:hover, a:hover, .skill-pill:hover, .social-item:hover {
   .about-page-overlay, .about-page-overlay.active * { animation: none !important; transition-duration: .01ms !important; }
 }
     </style> 
+
+<style>
+/* ===== Graphic Design: poster dikelompokkan per tipe, 5 sejajar per baris ===== */
+#graphic-design-gallery .work-image-grid.is-grouped { display: none; }
+#graphic-design-gallery .poster-row {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 18px;
+    align-items: stretch;
+    margin-bottom: 30px;
+}
+#graphic-design-gallery .poster-row .work-image-card {
+    padding: 8px;
+    border-radius: 14px;
+    display: flex;
+}
+#graphic-design-gallery .poster-row .work-image-card img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: var(--ratio, 4 / 5);
+    max-height: none;
+    object-fit: contain;
+    border-radius: 8px;
+}
+#graphic-design-gallery .poster-row .work-image-card img.fit-cover { object-fit: cover; }
+@media (max-width: 1100px) { #graphic-design-gallery .poster-row { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; } }
+@media (max-width: 700px)  { #graphic-design-gallery .poster-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; } }
+</style>
+<style>
+/* Poster dempet tanpa celah */
+#graphic-design-gallery .poster-row { gap: 0 !important; margin-bottom: 0 !important; }
+#graphic-design-gallery .poster-row .work-image-card {
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+#graphic-design-gallery .poster-row .work-image-card img { border-radius: 0 !important; }
+#graphic-design-gallery .poster-row .work-image-card:hover { transform: none; box-shadow: none !important; filter: brightness(1.12); }
+</style>
 </head> 
 <body> 
     <div class="background-blob"></div> 
@@ -2184,22 +2246,64 @@ button:hover, a:hover, .skill-pill:hover, .social-item:hover {
                 </div>
                 <div class="work-image-grid">
                     <figure class="work-image-card">
-                        <img src="graphic-design-1.jpg" alt="Graphic Design Project 1">
+                        <img src="WhatsApp%20Image%202026-11-15%20at%2015.50.41.jpeg" alt="Graphic Design 1">
                     </figure>
                     <figure class="work-image-card">
-                        <img src="graphic-design-2.jpg" alt="Graphic Design Project 2">
+                        <img src="WhatsApp%20Image%202026-11-15%20at%2015.50.44.jpeg" alt="Graphic Design 2">
                     </figure>
                     <figure class="work-image-card">
-                        <img src="graphic-design-3.jpg" alt="Graphic Design Project 3">
+                        <img src="WhatsApp%20Image%202026-11-15%20at%2015.50.46.jpeg" alt="Graphic Design 3">
                     </figure>
                     <figure class="work-image-card">
-                        <img src="graphic-design-4.jpg" alt="Graphic Design Project 4">
+                        <img src="WhatsApp%20Image%202026-11-15%20at%2015.50.58.jpeg" alt="Graphic Design 4">
                     </figure>
                     <figure class="work-image-card">
-                        <img src="poster ramadhan.jpg" alt="Ramadhan Poster">
+                        <img src="WhatsApp%20Image%202026-11-15%20at%2015.50.583.jpeg" alt="Graphic Design 5">
                     </figure>
                     <figure class="work-image-card">
-                        <img src="jelajah.png" alt="Jelajah Poster">
+                        <img src="WhatsApp%20Image%202026-11-15%20at%2015.51.00d.jpeg" alt="Graphic Design 6">
+                    </figure>
+                    <figure class="work-image-card">
+                        <img src="WhatsApp%20Image%202026-11-15%20at%2015.51.02.jpeg" alt="Graphic Design 7">
+                    </figure>
+                    <figure class="work-image-card">
+                        <img src="WhatsApp%20Image%202026-11-15%20at%2015.51.07.jpeg" alt="Graphic Design 8">
+                    </figure>
+                    <figure class="work-image-card">
+                        <img src="WhatsApp%20Image%202026-11-15%20at%2015.51.08.jpeg" alt="Graphic Design 9">
+                    </figure>
+                    <figure class="work-image-card">
+                        <img src="WhatsApp%20Image%202026-11-15%20at%2015.51.13.jpeg" alt="Graphic Design 10">
+                    </figure>
+                    <figure class="work-image-card">
+                        <img src="WhatsApp%20Image%202026-11-15%20at%2015.51.17.jpeg" alt="Graphic Design 11">
+                    </figure>
+                    <figure class="work-image-card">
+                        <img src="WhatsApp%20Image%202026-11-15%20at%2015.51.17d.jpeg" alt="Graphic Design 12">
+                    </figure>
+                    <figure class="work-image-card">
+                        <img src="WhatsApp%20Image%202026-11-15%20at%2015.51.18.jpeg" alt="Graphic Design 13">
+                    </figure>
+                    <figure class="work-image-card">
+                        <img src="WhatsApp%20Image%202026-11-15%20at%2015.51.21.jpeg" alt="Graphic Design 14">
+                    </figure>
+                    <figure class="work-image-card">
+                        <img src="WhatsApp%20Image%202026-11-15%20at%2015.51.22.jpeg" alt="Graphic Design 15">
+                    </figure>
+                    <figure class="work-image-card">
+                        <img src="WhatsApp%20Image%202026-11-15%20at%2015.51.22d.jpeg" alt="Graphic Design 16">
+                    </figure>
+                    <figure class="work-image-card">
+                        <img src="WhatsApp%20Image%202026-11-15%20at%2015.51.23.jpeg" alt="Graphic Design 17">
+                    </figure>
+                    <figure class="work-image-card">
+                        <img src="WhatsApp%20Image%202026-11-15%20at%2015.51.24.jpeg" alt="Graphic Design 18">
+                    </figure>
+                    <figure class="work-image-card">
+                        <img src="WhatsApp%20Image%202026-11-15%20at%2015.51.24d.jpeg" alt="Graphic Design 19">
+                    </figure>
+                    <figure class="work-image-card">
+                        <img src="WhatsApp%20Image%202026-11-15%20at%2015.51.25.jpeg" alt="Graphic Design 20">
                     </figure>
                 </div>
             </section>
@@ -2667,7 +2771,16 @@ button:hover, a:hover, .skill-pill:hover, .social-item:hover {
 
                     const hideMissingImage = () => {
                         const card = img.closest(".work-image-card");
-                        if (card) card.remove();
+                        if (card && card.closest("#graphic-design-gallery")) {
+                            // Jangan dihapus: tampilkan path supaya mudah dicek
+                            img.style.display = "none";
+                            const note = document.createElement("div");
+                            note.style.cssText = "padding:40px 14px;text-align:center;font-size:12px;color:#9fb5c9;word-break:break-all;";
+                            note.textContent = "File tidak ditemukan: " + decodeURI(img.getAttribute("src"));
+                            card.appendChild(note);
+                        } else if (card) {
+                            card.remove();
+                        }
                         totalProjectsNumber.textContent = loadedCount;
                     };
 
@@ -2813,5 +2926,59 @@ button:hover, a:hover, .skill-pill:hover, .social-item:hover {
 
         }); 
     </script> 
+
+<script>
+/* Kelompokkan poster otomatis: panjang (portrait) / kotak / live report (landscape).
+   Mau atur manual? Tambahkan data-type="tall" | "square" | "wide" di <figure>. */
+(function () {
+    const gallery = document.getElementById("graphic-design-gallery");
+    if (!gallery) return;
+    const grid = gallery.querySelector(".work-image-grid");
+    const figs = Array.from(grid.querySelectorAll(".work-image-card"));
+
+    const ready = (img) => new Promise((res) => {
+        if (img.complete) return res();
+        img.addEventListener("load", res, { once: true });
+        img.addEventListener("error", res, { once: true });
+    });
+
+    Promise.all(figs.map((f) => ready(f.querySelector("img")))).then(() => {
+        const groups = { tall: [], portrait: [], square: [], wide: [] };
+
+        figs.forEach((fig) => {
+            const img = fig.querySelector("img");
+            const ratio = img.naturalWidth && img.naturalHeight ? img.naturalWidth / img.naturalHeight : 0.8;
+            fig._ratio = ratio;
+            let type = fig.dataset.type;
+            if (!groups[type]) type = ratio < 0.68 ? "tall" : ratio < 0.9 ? "portrait" : ratio <= 1.15 ? "square" : "wide";
+            groups[type].push(fig);
+        });
+
+        grid.classList.add("is-grouped");
+        let anchor = grid;
+
+        ["tall", "portrait", "square", "wide"].forEach((type) => {
+            const list = groups[type];
+            if (!list.length) return;
+
+            const sorted = list.map((f) => f._ratio).sort((a, b) => a - b);
+            const median = sorted[Math.floor(sorted.length / 2)];
+
+            const row = document.createElement("div");
+            row.className = "poster-row poster-row-" + type;
+            row.style.setProperty("--ratio", median.toFixed(4));
+
+            list.forEach((fig) => {
+                const img = fig.querySelector("img");
+                if (Math.abs(fig._ratio - median) / median < 0.12) img.classList.add("fit-cover");
+                row.appendChild(fig);
+            });
+
+            anchor.insertAdjacentElement("afterend", row);
+            anchor = row;
+        });
+    });
+})();
+</script>
 </body> 
 </html>
